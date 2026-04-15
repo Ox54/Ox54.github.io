@@ -1,0 +1,127 @@
+---
+/** Icon row for profiles and contact; sizes match former HackMD `=NxN` syntax via CSS. */
+export type SocialLink = {
+	href: string;
+	label: string;
+	iconUrl: string;
+	/** Display width/height in CSS pixels */
+	size?: number;
+};
+
+const defaultLinks: SocialLink[] = [
+	{
+		href: 'https://www.linkedin.com/in/taylor-roberts-3a0467108/',
+		label: 'LinkedIn',
+		iconUrl: 'https://hackmd.io/_uploads/H196T7EHT.png',
+		size: 36,
+	},
+	{
+		href: 'https://github.com/IVIyg0t',
+		label: 'GitHub',
+		iconUrl: 'https://hackmd.io/_uploads/Syu1JNVHp.png',
+		size: 36,
+	},
+	{
+		href: 'mailto:mjtaylorroberts@gmail.com',
+		label: 'Email',
+		iconUrl: 'https://hackmd.io/_uploads/S1Zw14VHT.png',
+		size: 36,
+	},
+	{
+		href: 'tel:276-591-7908',
+		label: 'Phone',
+		iconUrl: 'https://hackmd.io/_uploads/ryOR14VrT.png',
+		size: 36,
+	},
+];
+
+type Props = {
+	links?: SocialLink[];
+};
+
+const { links = defaultLinks } = Astro.props as Props;
+---
+
+<nav class="social-links" aria-label="Social and contact links">
+	<ul>
+		{
+			links.map(({ href, label, iconUrl, size = 36 }) => {
+				const isExternal = href.startsWith('http');
+				return (
+					<li>
+						<a
+							href={href}
+							aria-label={label}
+							style={`--icon-size: ${size}px`}
+							target={isExternal ? '_blank' : undefined}
+							rel={isExternal ? 'noopener noreferrer' : undefined}
+						>
+							<img src={iconUrl} alt="" width={size} height={size} loading="lazy" decoding="async" />
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</nav>
+
+<style>
+	.social-links {
+		margin: 0.5rem 0 1.25rem;
+	}
+
+	.social-links ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.social-links a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 0;
+		border-radius: 10px;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			box-shadow 0.15s ease;
+	}
+
+	.social-links a:focus-visible {
+		outline: 2px solid var(--accent, #0d47a1);
+		outline-offset: 2px;
+	}
+
+	.social-links img {
+		display: block;
+		width: var(--icon-size, 36px);
+		height: var(--icon-size, 36px);
+		object-fit: contain;
+	}
+
+	/* Raster icons from HackMD are tuned for light UI; give them a readable tile on dark backgrounds. */
+	@media (prefers-color-scheme: dark) {
+		.social-links a {
+			background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			box-shadow:
+				0 1px 0 rgba(255, 255, 255, 0.06) inset,
+				0 1px 3px rgba(0, 0, 0, 0.45);
+			padding: 0.4rem;
+		}
+
+		.social-links a:hover {
+			background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+			border-color: rgba(144, 202, 249, 0.45);
+		}
+
+		.social-links a:focus-visible {
+			outline-color: #90caf9;
+		}
+	}
+</style>

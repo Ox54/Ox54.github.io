@@ -1,0 +1,196 @@
+:root {
+	color-scheme: light dark;
+	--text: #1a1a1a;
+	--text-muted: #444;
+	--bg: #fafafa;
+	--border: #e0e0e0;
+	--accent: #0d47a1;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text: #f0f0f0;
+		--text-muted: #b0b0b0;
+		--bg: #121212;
+		--border: #333;
+		--accent: #90caf9;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family:
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		sans-serif;
+	line-height: 1.55;
+	color: var(--text);
+	background: var(--bg);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: var(--accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+.resume {
+	max-width: 52rem;
+	margin: 0 auto;
+	padding: 1.75rem 1.25rem 3rem;
+}
+
+.resume h1 {
+	font-size: 1.85rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0 0 0.75rem;
+}
+
+.resume .subtitle {
+	display: block;
+	font-size: 1.05rem;
+	font-weight: 500;
+	color: var(--text-muted);
+	margin-top: 0.25rem;
+}
+
+.resume h2 {
+	font-size: 1.2rem;
+	margin: 2rem 0 0.75rem;
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.resume h3 {
+	font-size: 1.05rem;
+	margin: 1.25rem 0 0.5rem;
+}
+
+.resume p,
+.resume li {
+	color: var(--text);
+}
+
+.resume p {
+	margin: 0.65rem 0;
+}
+
+.resume ul {
+	margin: 0.35rem 0 0.75rem;
+	padding-left: 1.25rem;
+}
+
+.resume table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92rem;
+	margin: 0.75rem 0 1.25rem;
+}
+
+.resume th,
+.resume td {
+	border: 1px solid var(--border);
+	padding: 0.5rem 0.65rem;
+	vertical-align: top;
+}
+
+.resume th {
+	text-align: left;
+	background: color-mix(in srgb, var(--border) 35%, transparent);
+}
+
+.resume td ul {
+	margin: 0;
+	padding-left: 1.1rem;
+}
+
+.resume img {
+	max-width: 100%;
+	height: auto;
+}
+
+.project-shot {
+	margin: 0.5rem 0 1rem;
+	border-radius: 6px;
+	border: 1px solid var(--border);
+}
+
+@media print {
+	@page {
+		margin: 0.65in;
+	}
+
+	html {
+		background: #fff;
+		color: #000;
+		font-size: 10.5pt;
+	}
+
+	.resume {
+		max-width: none;
+		padding: 0;
+	}
+
+	.resume a {
+		color: #000;
+		text-decoration: none;
+	}
+
+	.resume .subtitle,
+	.resume p,
+	.resume li {
+		color: #111;
+	}
+
+	.resume h2 {
+		border-color: #ccc;
+		break-after: avoid;
+	}
+
+	.resume h3 {
+		break-after: avoid;
+	}
+
+	.project-shot {
+		border-color: #ccc;
+		max-height: 220px;
+		object-fit: contain;
+	}
+
+	.social-links a::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.85em;
+		word-break: break-all;
+	}
+
+	.social-links a[href^='mailto:']::after,
+	.social-links a[href^='tel:']::after {
+		content: '';
+	}
+
+	.social-links a {
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+	}
+}

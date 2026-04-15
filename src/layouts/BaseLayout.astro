@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+
+type Frontmatter = {
+	title?: string;
+	description?: string;
+};
+
+const fm = (Astro.props as { frontmatter?: Frontmatter }).frontmatter ?? {};
+const title = fm.title ?? 'Taylor Roberts — Resume';
+const description =
+	fm.description ??
+	'Lead Machine Learning Engineer — resume (Markdown / Astro).';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<main class="resume">
+			<slot />
+		</main>
+	</body>
+</html>
