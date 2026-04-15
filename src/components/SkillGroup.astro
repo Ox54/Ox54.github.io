@@ -4,11 +4,94 @@ interface Props {
   skills: string[];
   wide?: boolean;
 }
+
 const { name, skills, wide = false } = Astro.props;
+
+interface SkillMeta {
+  logo?: string;
+  color: string;
+  lightBg?: boolean; // logo color becomes dark on light backgrounds
+  url?: string;
+}
+
+const skillMeta: Record<string, SkillMeta> = {
+  // AI / ML
+  'LangChain':    { logo: 'langchain',    color: '1c3c3c', url: 'https://www.langchain.com/' },
+  'LangGraph':    { logo: 'langchain',    color: '1c3c3c', url: 'https://langchain-ai.github.io/langgraph/' },
+  'PydanticAI':   { logo: 'pydantic',     color: 'E92063', url: 'https://ai.pydantic.dev/' },
+  'ChatGPT':      { logo: 'openai',       color: '412991', url: 'https://openai.com/' },
+  'Claude':       { logo: 'anthropic',    color: 'D97757', url: 'https://anthropic.com/claude' },
+  'Mistral':      { logo: 'mistral',      color: 'FF7000', url: 'https://mistral.ai/' },
+  'RAG':          {                        color: '4a5568', url: 'https://python.langchain.com/docs/concepts/rag/' },
+  'logfire':      { logo: 'pydantic',     color: 'FF4700', url: 'https://pydantic.dev/logfire' },
+  'XGBoost':      {                        color: '189AB4', url: 'https://xgboost.readthedocs.io/' },
+  'SKLearn':      { logo: 'scikitlearn',  color: 'F7931E', lightBg: true, url: 'https://scikit-learn.org/' },
+  'PyTorch':      { logo: 'pytorch',      color: 'EE4C2C', url: 'https://pytorch.org/' },
+  'Hugging Face': { logo: 'huggingface',  color: 'FF9D00', lightBg: true, url: 'https://huggingface.co/' },
+
+  // Python
+  'FastAPI':      { logo: 'fastapi',      color: '009688', url: 'https://fastapi.tiangolo.com/' },
+  'Flask':        { logo: 'flask',        color: '000000', url: 'https://flask.palletsprojects.com/' },
+  'Pydantic':     { logo: 'pydantic',     color: 'E92063', url: 'https://docs.pydantic.dev/' },
+  'SQLModel':     { logo: 'fastapi',      color: '009688', url: 'https://sqlmodel.tiangolo.com/' },
+  'SQLAlchemy':   {                        color: 'D71F00', url: 'https://www.sqlalchemy.org/' },
+  'Alembic':      {                        color: '6BA539', url: 'https://alembic.sqlalchemy.org/' },
+  'Click':        {                        color: '000000', url: 'https://click.palletsprojects.com/' },
+  'Typer':        { logo: 'fastapi',      color: '009688', url: 'https://typer.tiangolo.com/' },
+  'Pandas':       { logo: 'pandas',       color: '150458', url: 'https://pandas.pydata.org/' },
+  'Numpy':        { logo: 'numpy',        color: '013243', url: 'https://numpy.org/' },
+  'Streamlit':    { logo: 'streamlit',    color: 'FF4B4B', url: 'https://streamlit.io/' },
+  'Rich':         {                        color: '009b55', url: 'https://rich.readthedocs.io/' },
+  'Plotly':       { logo: 'plotly',       color: '3F4F75', url: 'https://plotly.com/python/' },
+  'Spark':        { logo: 'apachespark',  color: 'E25A1C', url: 'https://spark.apache.org/' },
+  'Dask':         {                        color: 'ef8336', url: 'https://www.dask.org/' },
+  'Rust / PyO3':  { logo: 'rust',         color: 'CE422B', url: 'https://pyo3.rs/' },
+
+  // Frontend
+  'React':        { logo: 'react',        color: '20232A', url: 'https://react.dev/' },
+  'TypeScript':   { logo: 'typescript',   color: '3178C6', url: 'https://www.typescriptlang.org/' },
+  'Vite':         { logo: 'vite',         color: '646CFF', url: 'https://vitejs.dev/' },
+  'D3.js':        { logo: 'd3dotjs',      color: 'F9A03C', lightBg: true, url: 'https://d3js.org/' },
+  'Ant Design':   { logo: 'antdesign',    color: '0170FE', url: 'https://ant.design/' },
+  'Angular':      { logo: 'angular',      color: 'DD0031', url: 'https://angular.dev/' },
+
+  // Databases
+  'PostgreSQL':   { logo: 'postgresql',   color: '4169E1', url: 'https://www.postgresql.org/' },
+  'Redshift':     { logo: 'amazonredshift', color: '8C4FFF', url: 'https://aws.amazon.com/redshift/' },
+  'MongoDB':      { logo: 'mongodb',      color: '47A248', url: 'https://www.mongodb.com/' },
+  'Redis':        { logo: 'redis',        color: 'DC382D', url: 'https://redis.io/' },
+  'Elasticsearch':{ logo: 'elasticsearch',color: '005571', url: 'https://www.elastic.co/elasticsearch' },
+  'Supabase':     { logo: 'supabase',     color: '3ECF8E', lightBg: true, url: 'https://supabase.com/' },
+
+  // Cloud
+  'AWS':          { logo: 'amazonaws',    color: 'FF9900', lightBg: true, url: 'https://aws.amazon.com/' },
+  'Azure':        { logo: 'microsoftazure', color: '0078D4', url: 'https://azure.microsoft.com/' },
+  'Render':       {                        color: '0d1117', url: 'https://render.com/' },
+};
+
+function badgeUrl(skill: string): string {
+  const meta = skillMeta[skill] ?? { color: '4a5568' };
+  const label = skill
+    .replace(/_/g, '__')
+    .replace(/-/g, '--')
+    .replace(/ /g, '_')
+    .replace(/\//g, '%2F');
+  let url = `https://img.shields.io/badge/${label}-${meta.color}?style=for-the-badge`;
+  if (meta.logo) {
+    url += `&logo=${meta.logo}&logoColor=${meta.lightBg ? '333' : 'white'}`;
+  }
+  return url;
+}
 ---
 <div class:list={['skill-group', { wide }]}>
   <h4>{name}</h4>
   <div class="skill-tags">
-    {skills.map(skill => <span class="tag">{skill}</span>)}
+    {skills.map(skill => {
+      const url = skillMeta[skill]?.url;
+      const img = <img src={badgeUrl(skill)} alt={skill} loading="lazy" height="26" />;
+      return url
+        ? <a href={url} target="_blank" rel="noopener noreferrer">{img}</a>
+        : img;
+    })}
   </div>
 </div>

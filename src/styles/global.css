@@ -152,18 +152,18 @@ a:hover {
 .skill-tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.35rem;
+	gap: 0.4rem;
+	align-items: flex-start;
 }
 
-.tag {
-	display: inline-block;
-	padding: 0.2rem 0.6rem;
-	border-radius: 999px;
-	font-size: 0.78rem;
-	background: color-mix(in srgb, var(--accent) 10%, var(--bg));
-	border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
-	color: var(--text);
-	white-space: nowrap;
+.skill-tags img {
+	display: block;
+}
+
+.skill-tags a {
+	display: block;
+	line-height: 0;
+	text-decoration: none;
 }
 
 .project-shot {
@@ -232,9 +232,7 @@ a:hover {
 		padding: 0 !important;
 	}
 
-	.tag {
-		background: none;
-		border-color: #ccc;
-		padding: 0.1rem 0.4rem;
+	.skill-tags img {
+		filter: grayscale(1);
 	}
 }
