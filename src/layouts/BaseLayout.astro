@@ -29,6 +29,7 @@ const description =
 			<slot />
 		</main>
 		<script>
+			// Typewriter
 			const el = document.getElementById('subtitle');
 			if (el) {
 				const text = el.textContent ?? '';
@@ -46,6 +47,36 @@ const description =
 				};
 				setTimeout(type, 400);
 			}
+
+			// Scroll-triggered fade-ins
+			const targets = document.querySelectorAll<HTMLElement>(
+				'.resume h2, .resume h3, .resume p, .resume ul, .resume .skills-grid, .resume .project-shot'
+			);
+
+			targets.forEach(target => {
+				target.classList.add('reveal');
+				if (target.getBoundingClientRect().top < window.innerHeight) {
+					target.classList.add('visible');
+				}
+			});
+
+			const observer = new IntersectionObserver(
+				entries => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.1, rootMargin: '0px 0px -24px 0px' }
+			);
+
+			targets.forEach(target => {
+				if (!target.classList.contains('visible')) {
+					observer.observe(target);
+				}
+			});
 		</script>
 	</body>
 </html>
