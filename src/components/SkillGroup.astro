@@ -1,0 +1,14 @@
+---
+interface Props {
+  name: string;
+  skills: string[];
+  wide?: boolean;
+}
+const { name, skills, wide = false } = Astro.props;
+---
+<div class:list={['skill-group', { wide }]}>
+  <h4>{name}</h4>
+  <div class="skill-tags">
+    {skills.map(skill => <span class="tag">{skill}</span>)}
+  </div>
+</div>

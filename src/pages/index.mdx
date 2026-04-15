@@ -5,6 +5,7 @@ title: Taylor Roberts — Resume
 ---
 
 import SocialLinks from '../components/SocialLinks.astro';
+import SkillGroup from '../components/SkillGroup.astro';
 
 <h1>Taylor Roberts <span class="subtitle">Head of Engineering | AI Enthusiast | Life-long Tinkerer</span></h1>
 
@@ -48,13 +49,13 @@ Built full-stack web applications for clients across multiple industries before 
 
 ## Skills
 
-| Technology | Framework / Library | ML / AI |
-| ---------- | ------------------- | ------- |
-| Python | <ul><li>Flask / FastAPI</li><li>Click / Typer</li><li>GraphQL</li><li>Masonite / SQLAlchemy / SQLModel</li><li>Alembic</li><li>Plotly</li><li>Streamlit</li><li>Rich</li><li>Setuptools</li><li>Pandas</li><li>Numpy</li><li>Pydantic</li><li>MkDocs / Sphinx</li><li>Dask</li><li>Spark</li></ul> | <ul><li>ChatGPT</li><li>Claude AI</li><li>Mistral AI</li><li>RAG (Langchain)</li><li>LangGraph</li><li>PydanticAI</li><li>logfire</li><li>XGBoost</li><li>SKLearn</li><li>PyTorch</li><li>Hugging Face</li></ul> |
-| Rust | <ul><li>PyO3</li></ul> | |
-| Typescript | <ul><li>React</li><li>Antd</li><li>MaterialJS</li><li>Vite</li><li>PlotlyJS</li><li>Angular2</li><li>D3.js</li></ul> | |
-| Databases | <ul><li>PostgreSQL</li><li>Redshift</li><li>MongoDB</li><li>Redis</li><li>Elasticsearch</li><li>Supabase</li></ul> | |
-| Cloud | <ul><li>AWS</li><li>Azure</li><li>Render</li></ul> | |
+<div class="skills-grid">
+  <SkillGroup wide name="AI / ML" skills={["LangChain", "LangGraph", "PydanticAI", "ChatGPT", "Claude", "Mistral", "RAG", "logfire", "XGBoost", "SKLearn", "PyTorch", "Hugging Face"]} />
+  <SkillGroup wide name="Python" skills={["FastAPI", "Flask", "Pydantic", "SQLModel", "SQLAlchemy", "Alembic", "Click", "Typer", "Pandas", "Numpy", "Streamlit", "Rich", "Plotly", "Spark", "Dask", "Rust / PyO3"]} />
+  <SkillGroup name="Frontend" skills={["React", "TypeScript", "Vite", "D3.js", "Ant Design", "Angular"]} />
+  <SkillGroup name="Databases" skills={["PostgreSQL", "Redshift", "MongoDB", "Redis", "Elasticsearch", "Supabase"]} />
+  <SkillGroup name="Cloud" skills={["AWS", "Azure", "Render"]} />
+</div>
 
 ## Projects
 
