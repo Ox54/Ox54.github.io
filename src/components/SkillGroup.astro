@@ -87,10 +87,10 @@ function badgeUrl(skill: string): string {
   <h4>{name}</h4>
   <div class="skill-tags">
     {skills.map(skill => {
-      const url = skillMeta[skill]?.url;
+      const meta = skillMeta[skill];
       const img = <img src={badgeUrl(skill)} alt={skill} loading="lazy" height="26" />;
-      return url
-        ? <a href={url} target="_blank" rel="noopener noreferrer">{img}</a>
+      return meta?.url
+        ? <a href={meta.url} target="_blank" rel="noopener noreferrer" style={`--badge-color: #${meta.color}`}>{img}</a>
         : img;
     })}
   </div>

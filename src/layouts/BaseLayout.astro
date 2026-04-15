@@ -28,5 +28,24 @@ const description =
 		<main class="resume">
 			<slot />
 		</main>
+		<script>
+			const el = document.getElementById('subtitle');
+			if (el) {
+				const text = el.textContent ?? '';
+				el.textContent = '';
+				el.classList.add('typing');
+				let i = 0;
+				const type = () => {
+					if (i < text.length) {
+						el.textContent += text[i++];
+						setTimeout(type, 38);
+					} else {
+						el.classList.remove('typing');
+						el.classList.add('typing-done');
+					}
+				};
+				setTimeout(type, 400);
+			}
+		</script>
 	</body>
 </html>

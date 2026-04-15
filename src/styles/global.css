@@ -9,11 +9,11 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--text: #f0f0f0;
-		--text-muted: #b0b0b0;
-		--bg: #121212;
-		--border: #333;
-		--accent: #90caf9;
+		--text: #e2e8f0;
+		--text-muted: #94a3b8;
+		--bg: #0a0f1e;
+		--border: #1e2d4a;
+		--accent: #60a5fa;
 	}
 }
 
@@ -71,6 +71,22 @@ a:hover {
 	font-weight: 500;
 	color: var(--text-muted);
 	margin-top: 0.25rem;
+}
+
+.resume .subtitle.typing::after {
+	content: '|';
+	margin-left: 1px;
+	animation: blink 0.65s step-end infinite;
+}
+
+@keyframes blink {
+	50% { opacity: 0; }
+}
+
+@media print {
+	.resume .subtitle::after {
+		display: none;
+	}
 }
 
 .resume h2 {
@@ -158,12 +174,18 @@ a:hover {
 
 .skill-tags img {
 	display: block;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .skill-tags a {
 	display: block;
 	line-height: 0;
 	text-decoration: none;
+}
+
+.skill-tags a:hover img {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 14px color-mix(in srgb, var(--badge-color, var(--accent)) 55%, transparent);
 }
 
 .project-shot {
@@ -234,5 +256,7 @@ a:hover {
 
 	.skill-tags img {
 		filter: grayscale(1);
+		transform: none !important;
+		box-shadow: none !important;
 	}
 }
