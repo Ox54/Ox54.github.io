@@ -4,6 +4,8 @@ import '../styles/global.css';
 type Frontmatter = {
 	title?: string;
 	description?: string;
+	/** Absolute URL, or site path (e.g. `/og.png`) used for link previews */
+	image?: string;
 };
 
 const fm = (Astro.props as { frontmatter?: Frontmatter }).frontmatter ?? {};
@@ -11,6 +13,21 @@ const title = fm.title ?? 'Taylor Roberts — Resume';
 const description =
 	fm.description ??
 	'Lead Machine Learning Engineer — resume (Markdown / Astro).';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+function resolveOgImage(image: string | undefined): string {
+	if (!image) {
+		return new URL('/favicon.ico', Astro.site).href;
+	}
+	if (image.startsWith('https://') || image.startsWith('http://')) {
+		return image;
+	}
+	const path = image.startsWith('/') ? image : `/${image}`;
+	return new URL(path, Astro.site).href;
+}
+
+const ogImage = resolveOgImage(fm.image);
 ---
 
 <!doctype html>
@@ -20,6 +37,19 @@ const description =
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL.href} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<title>{title}</title>
