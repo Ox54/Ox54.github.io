@@ -5,6 +5,21 @@
 	--bg: #fafafa;
 	--border: #e0e0e0;
 	--accent: #0d47a1;
+	--font-sans:
+		system-ui,
+		-apple-system,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		sans-serif;
+	--font-display: 'Space Grotesk', var(--font-sans);
+	--font-mono:
+		'JetBrains Mono',
+		'SFMono-Regular',
+		Consolas,
+		'Liberation Mono',
+		monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,14 +39,7 @@
 }
 
 html {
-	font-family:
-		system-ui,
-		-apple-system,
-		'Segoe UI',
-		Roboto,
-		'Helvetica Neue',
-		Arial,
-		sans-serif;
+	font-family: var(--font-sans);
 	line-height: 1.55;
 	color: var(--text);
 	background: var(--bg);
@@ -59,18 +67,23 @@ a:hover {
 }
 
 .resume h1 {
-	font-size: 1.85rem;
+	font-family: var(--font-display);
+	font-size: 2.1rem;
 	font-weight: 700;
 	line-height: 1.2;
+	letter-spacing: -0.035em;
 	margin: 0 0 0.75rem;
 }
 
 .resume .subtitle {
 	display: block;
-	font-size: 1.05rem;
+	font-family: var(--font-mono);
+	font-size: 0.95rem;
 	font-weight: 500;
+	letter-spacing: 0.01em;
+	line-height: 1.45;
 	color: var(--text-muted);
-	margin-top: 0.25rem;
+	margin-top: 0.35rem;
 }
 
 .resume .subtitle.typing::after {
