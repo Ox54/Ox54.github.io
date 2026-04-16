@@ -268,9 +268,7 @@ a:hover {
 	}
 
 	.project-shot {
-		border-color: #ccc;
-		max-height: 220px;
-		object-fit: contain;
+		display: none;
 	}
 
 	.social-links ul {
