@@ -10,13 +10,13 @@ export type SocialLink = {
 
 const defaultLinks: SocialLink[] = [
 	{
-		href: 'https://www.linkedin.com/in/taylor-roberts-3a0467108/',
+		href: 'https://www.linkedin.com/in/0x54/',
 		label: 'LinkedIn',
 		iconUrl: 'https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white',
 		size: 28,
 	},
 	{
-		href: 'https://github.com/IVIyg0t',
+		href: 'https://github.com/ox54',
 		label: 'GitHub',
 		iconUrl: 'https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white',
 		size: 28,
@@ -53,11 +53,18 @@ const { links = defaultLinks } = Astro.props as Props;
 		{
 			links.map(({ href, label, iconUrl, size = 28 }) => {
 				const isExternal = href.startsWith('http');
+				const printValue = href.replace(/^mailto:/, '').replace(/^tel:/, '');
+				const printKind = href.startsWith('mailto:')
+					? 'email'
+					: href.startsWith('tel:')
+						? 'phone'
+						: 'other';
 				return (
-					<li>
+					<li data-print-kind={printKind}>
 						<a
 							href={href}
 							aria-label={label}
+							data-print={printValue}
 							style={`--badge-height: ${size}px`}
 							target={isExternal ? '_blank' : undefined}
 							rel={isExternal ? 'noopener noreferrer' : undefined}

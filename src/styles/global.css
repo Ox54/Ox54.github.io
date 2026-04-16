@@ -273,22 +273,46 @@ a:hover {
 		object-fit: contain;
 	}
 
+	.social-links ul {
+		display: block !important;
+	}
+
+	.social-links li {
+		display: none !important;
+	}
+
+	.social-links li[data-print-kind='email'],
+	.social-links li[data-print-kind='phone'] {
+		display: block !important;
+	}
+
+	.social-links li + li {
+		margin-top: 0.12rem;
+	}
+
 	.social-links a::after {
-		content: ' (' attr(href) ')';
-		font-size: 0.85em;
+		content: attr(data-print);
+		display: block;
+		font-size: 0.9em;
+		line-height: 1.35;
 		word-break: break-all;
 	}
 
-	.social-links a[href^='mailto:']::after,
-	.social-links a[href^='tel:']::after {
-		content: '';
+	.social-links a img,
+	.social-links img {
+		display: none !important;
+		height: 0 !important;
+		width: 0 !important;
 	}
 
 	.social-links a {
+		display: block !important;
 		background: transparent !important;
 		border: none !important;
 		box-shadow: none !important;
+		overflow: visible !important;
 		padding: 0 !important;
+		line-height: 1.35;
 	}
 
 	.skill-tags img {
