@@ -1,0 +1,73 @@
+---
+/** GitHub star count + PyPI downloads for open source projects. */
+interface Props {
+	repo: string;
+	pypi: string;
+}
+
+const { repo, pypi } = Astro.props as Props;
+
+function compactCount(n: number): string {
+	if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`;
+	if (n >= 1_000) return `${Math.round(n / 1_000)}k`;
+	return n.toLocaleString();
+}
+
+let stars: number | null = null;
+let downloads: number | null = null;
+
+try {
+	const res = await fetch(`https://api.github.com/repos/${repo}`, {
+		headers: { Accept: 'application/vnd.github+json', 'User-Agent': '0x054-resume' },
+	});
+	if (res.ok) {
+		const data = (await res.json()) as { stargazers_count?: number };
+		stars = data.stargazers_count ?? null;
+	}
+} catch {
+	stars = null;
+}
+
+try {
+	const res = await fetch(`https://pepy.tech/api/v2/projects/${pypi}`);
+	if (res.ok) {
+		const data = (await res.json()) as { total_downloads?: number };
+		downloads = data.total_downloads ?? null;
+	}
+} catch {
+	downloads = null;
+}
+
+const githubUrl = `https://github.com/${repo}`;
+const pypiUrl = `https://pypi.org/project/${pypi}/`;
+---
+
+<div class="project-stats">
+	<a class="project-stat project-stars" href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`${stars ?? ''} GitHub stars`}>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+			<path
+				fill="currentColor"
+				d="M12 2l2.39 7.26H22l-6.19 4.5 2.36 7.26L12 16.77l-6.17 4.25 2.36-7.26L2 9.26h7.61z"
+			/>
+		</svg>
+		{stars !== null ? <span>{stars.toLocaleString()}</span> : null}
+	</a>
+	{
+		downloads !== null ? (
+			<>
+				<span class="project-stat-sep" aria-hidden="true">
+					·
+				</span>
+				<a
+					class="project-downloads"
+					href={pypiUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label={`${compactCount(downloads)} PyPI downloads`}
+				>
+					{compactCount(downloads)} downloads
+				</a>
+			</>
+		) : null
+	}
+</div>

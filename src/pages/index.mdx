@@ -7,6 +7,7 @@ title: Taylor Roberts — Resume
 
 import SocialLinks from '../components/SocialLinks.astro';
 import SkillGroup from '../components/SkillGroup.astro';
+import ProjectStats from '../components/ProjectStats.astro';
 
 <h1>Taylor Roberts <span class="subtitle" id="subtitle">Head of Engineering | AI Enthusiast | Entrepreneur | Life-long Tinkerer</span></h1>
 
@@ -14,25 +15,25 @@ import SkillGroup from '../components/SkillGroup.astro';
 
 ## TL;DR
 
-I've spent the last decade building data pipelines, ML infrastructure, and developer tools with strong ergonomics. After six years at Capital One, where I progressed from data engineer to leading ML teams and shipping internal tools used across the data science org, I made a deliberate move into AI. I've consulted on AI-first engineering projects for select clients, and I'm currently Head of Engineering at Blueberry AI, where I'm building multi-agent systems to predict hiring outcomes at scale. I don't just keep up with the LLM ecosystem; I build production systems and ship open source tools along the way.
+I've spent the last decade building data pipelines, ML infrastructure, and production AI systems — most of it in and around financial services. Over six years at Capital One I progressed from data engineer to leading ML teams, shipping anomaly detection and model explainability tools used across the data science org, including a platform that informed economic strategy at the executive level. Since making a deliberate move into AI-native work, I've built LLM pipelines for complaint trend analysis at a fintech, led engineering at an AI startup as Head of Engineering (designing a ~75-agent assessment pipeline), and I'm currently rearchitecting a consumer-complaint intelligence product — production RAG over CFPB data, agentic chat, and the AWS infrastructure underneath it. My work doesn't stop when the day ends — off the clock I build open source tools I'd want to use myself. [mkdocs-typer2](https://github.com/syn54x/mkdocs-typer2) came from a love of clear documentation and a need to auto-generate CLI reference docs. [Ferro ORM](https://github.com/syn54x/ferro-orm) came from wanting database access wired straight into Pydantic models. [TTD](https://github.com/syn54x/ttd) came because spreadsheets are brittle and QuickBooks wasn't worth it — a developer-centric, terminal-first timesheet and invoicing tool I run every day.
 
-**This is my craft and I take pride in honing it every single day with every new technology.**
+**This is my craft and I take pride in honing it every single day.**
 
 ## Experience
-
-My career started at Notch, a Richmond-based software consultancy where I built full-stack web applications for various clients. In 2017, Capital One acquired Notch and brought the team into their Center for Machine Learning. Over the next six years I grew from data engineer to Lead ML Engineer (IC), building Python tools that served data scientists across the enterprise. In 2024 I made a deliberate move toward AI-native work, leading GenAI pipeline projects at Vectari AI, taking on select consulting engagements, and ultimately joining Blueberry AI as Head of Engineering.
-
-### Blueberry AI - Head of Engineering (Mar 2025 – Present)
-
-At Blueberry AI I built an AI-powered platform to help hiring teams evaluate candidates more consistently by turning interview data into structured, role-specific assessments. As Head of Engineering, I architected and productionized the company’s core candidate assessment platform, designing a multi-agent pipeline of ~75 agents using LangChain, LangGraph, Prefect, PydanticAI, and Pydantic. The system analyzed interview evidence against open role requirements, generated structured hiring recommendations, and served as a production decision-support tool for recruiters and hiring managers.
 
 ### ByteSize - AI Consulting (Oct 2024 – Present)
 
 I take on select AI-first engineering engagements, delivering production systems end-to-end.
 
+**[Alumbra AI](https://www.alumbraai.com)** (Apr 2026 – Present): Rearchitected [Trend Canary](https://trendcanary.ai), a consumer-complaint intelligence platform built on CFPB data. Replaced an in-house Postgres semantic search system with a production-grade OpenSearch cluster, then rebuilt the product's chatbot on top of it: a tool-calling RAG agent (Pydantic AI, Anthropic prompt caching, Logfire observability) with an AI-native chat UI using the Vercel AI SDK and AI Elements — inline citations, aggregation charts, sources panels, and saved conversations. Also built the Terraform control plane: multi-environment AWS infrastructure (ECS, RDS, OpenSearch) with release-gated production deploys and scheduled data pipelines.
+
 **[Unboxed Training & Technology](https://unboxedtechnology.com/)** (Oct 2024 – Mar 2025): Built an agentic sales training pipeline for one of their largest pharmaceutical clients using LangChain, LangGraph, Pydantic, Azure, and ChatGPT.
 
 **[Pearl](https://poweredbypearl.com/)** (Jan 2025 – Mar 2025): Built a data landing platform for a new multi-state tutoring initiative using Streamlit and AWS.
+
+### Blueberry AI - Head of Engineering (Mar 2025 – May 2026)
+
+At Blueberry AI I built an AI-powered platform to help hiring teams evaluate candidates more consistently by turning interview data into structured, role-specific assessments. As Head of Engineering I owned every technical aspect of the stack — the AI, API, UI, and database architectures — architecting and productionizing the company’s core candidate assessment platform: designing a multi-agent pipeline of ~75 agents using LangChain, LangGraph, Prefect, PydanticAI, and Pydantic. The system analyzed interview evidence against open role requirements, generated structured hiring recommendations, and served as a production decision-support tool for recruiters and hiring managers.
 
 ### Vectari AI - Lead Machine Learning Engineer (Jun 2024 – Sept 2024)
 
@@ -40,7 +41,7 @@ I built GenAI data transformation pipelines using ChatGPT and Claude to automate
 
 ### Capital One - Lead Machine Learning Engineer (Jan 2018 – Jun 2024)
 
-Over six years I built software for Capital One's enterprise Data Science community, growing from data engineer to managing an ML team. I shipped two widely adopted internal tools: Aenomoleas, an anomaly detection library, and Lustr, a model explainability framework, both used by data scientists across the org. My work spanned Python package development, model pipelines, CLIs, APIs, and web applications.
+Over six years I built software for Capital One's enterprise Data Science community, growing from data engineer to managing an ML team. One of my first shipped projects was S3P, an anomaly detection platform built for the Corporate Strategy team to help shape economic strategy at the highest levels of the company; it became the precursor to Aenomoleas, a widely adopted internal anomaly detection library. I also shipped Lustr, a model explainability framework used by data scientists across the org. My work spanned Python package development, model pipelines, CLIs, APIs, and web applications.
 
 - Manager, Lead Machine Learning Engineer (Aug 2022 - June 2024)
 - Principal Associate, Senior Machine Learning Engineer (Dec 2021 - Aug 2022)
@@ -51,32 +52,32 @@ Over six years I built software for Capital One's enterprise Data Science commun
 
 Built full-stack web applications for clients across multiple industries before the company was acquired by Capital One in 2017.
 
-## Skills
-
-<div class="skills-grid">
-  <SkillGroup wide name="AI / ML" skills={["LangChain", "LangGraph", "PydanticAI", "ChatGPT", "Claude", "Mistral", "RAG", "logfire", "XGBoost", "SKLearn", "PyTorch", "Hugging Face"]} />
-  <SkillGroup wide name="Python" skills={["FastAPI", "Flask", "Pydantic", "SQLModel", "SQLAlchemy", "Alembic", "Click", "Typer", "Prefect", "Pandas", "Numpy", "Streamlit", "Rich", "Plotly", "Spark", "Dask", "Rust / PyO3"]} />
-  <SkillGroup name="Frontend" skills={["React", "TypeScript", "Vite", "D3.js", "Ant Design", "Angular"]} />
-  <SkillGroup name="Databases" skills={["PostgreSQL", "Redshift", "MongoDB", "Redis", "Elasticsearch", "Supabase"]} />
-  <SkillGroup name="Cloud" skills={["AWS", "Azure", "Render"]} />
-</div>
-
-## Projects
+## Open Source Projects
 
 ### 📚 mkdocs-typer2
 
-[mkdocs-typer2](https://github.com/syn54x/mkdocs-typer2) is a MkDocs plugin that automatically generates documentation for Typer CLI applications by integrating with Typer's command structure to produce formatted markdown.
+<ProjectStats repo="syn54x/mkdocs-typer2" pypi="mkdocs-typer2" />
+
+[mkdocs-typer2](https://github.com/syn54x/mkdocs-typer2) is a widely adopted MkDocs plugin (115k+ PyPI downloads, [listed in the MkDocs catalog](https://github.com/mkdocs/catalog)) that auto-generates CLI reference docs from Typer apps — including animated terminal `--help` output via termynal. A maintained successor to the unmaintained `mkdocs-typer` plugin; supports MkDocs and Zensical.
 
 ### 🦀 Ferro ORM
 
-[Ferro ORM](https://github.com/syn54x/ferro-orm) is a high-performance asynchronous Python ORM with a Rust-powered core engine that combines Pydantic schema definitions with Rust's speed for optimized database access.
+<ProjectStats repo="syn54x/ferro-orm" pypi="ferro-orm" />
 
-### 🤌 SimplePluginFramework
+[Ferro ORM](https://github.com/syn54x/ferro-orm) is an async Python ORM with a Rust core (SQLx/Sea-Query via PyO3) — Pydantic schemas, GIL-free row hydration, and an identity map for object consistency. Single runtime dependency; ships pre-built wheels for macOS, Linux, and Windows.
 
-Python plugin frameworks are too complicated... [SPF](https://syn54x.github.io/SimplePluginFramework/) is a low-code, pure python (dependency free) solution to developing plugin architectures in Python.
+### ⏱️ TTD
 
-### 🤫 Whisper
+<ProjectStats repo="syn54x/ttd" pypi="ttd-ledger" />
 
-[Whisper](https://syn54x.github.io/whisper/) is a simple CLI tool for getting quick help from LLM's directly in your terminal.
+[TTD](https://github.com/syn54x/ttd) is a terminal-first time tracker, reporting, and invoicing tool for solo developers — natural-language logging, a full-screen Textual TUI, client-ready PDF invoices, and a Typer CLI for everything. Built on [Ferro ORM](https://github.com/syn54x/ferro-orm).
 
-<img class="project-shot" src="https://github.com/user-attachments/assets/40130388-2452-4902-9bca-2fb76ad79ffe" alt="Whisper CLI demo" width="800" height="450" loading="lazy" />
+## Skills
+
+<div class="skills-grid">
+  <SkillGroup wide name="AI / ML" skills={["LangChain", "LangGraph", "PydanticAI", "Vercel AI SDK", "AI Elements", "ChatGPT", "Claude", "Mistral", "RAG", "logfire", "XGBoost", "SKLearn", "PyTorch", "Hugging Face"]} />
+  <SkillGroup wide name="Python" skills={["FastAPI", "Flask", "Pydantic", "SQLModel", "SQLAlchemy", "Alembic", "Click", "Typer", "Prefect", "Pandas", "Numpy", "Streamlit", "Rich", "Plotly", "Spark", "Dask", "Rust / PyO3"]} />
+  <SkillGroup name="Frontend" skills={["React", "TypeScript", "Vite", "D3.js", "Ant Design", "Angular"]} />
+  <SkillGroup name="Databases" skills={["PostgreSQL", "Redshift", "MongoDB", "Redis", "OpenSearch", "Elasticsearch", "Supabase"]} />
+  <SkillGroup name="Cloud" skills={["AWS", "Azure", "Terraform", "Render"]} />
+</div>

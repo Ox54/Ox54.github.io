@@ -231,6 +231,56 @@ a:hover {
 	border: 1px solid var(--border);
 }
 
+.project-stats {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.4rem;
+	margin: 0.35rem 0 0.6rem;
+}
+
+.project-stat {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	text-decoration: none;
+	line-height: 1;
+	transition: opacity 0.15s ease;
+}
+
+.project-stat:hover {
+	opacity: 0.8;
+}
+
+.project-stat span {
+	color: var(--text);
+}
+
+.project-stars {
+	color: #e3b341;
+}
+
+.project-stat-sep {
+	color: var(--text-muted);
+	font-weight: 400;
+}
+
+.project-downloads {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+.project-downloads:hover {
+	color: var(--text);
+}
+
 @media print {
 	@page {
 		margin: 0.65in;
